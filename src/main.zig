@@ -20,7 +20,7 @@ pub fn main() !void {
     defer socket.close();
 
     const localhost = try network.Address.IPv4.parse("0.0.0.0");
-    // const address = try network.Address.IPv4.parse(args[1]);
+    const address = try network.Address.IPv4.parse(args[1]);
     const port = try std.fmt.parseInt(u16, args[2], 10);
 
     try socket.bind(.{
@@ -34,13 +34,13 @@ pub fn main() !void {
     var buffer: [buflen]u8 = undefined;
 
     // Initialize connection
-    // const endpoint = network.EndPoint{
-    //     .address = .{
-    //         .ipv4 = address,
-    //     },
-    //     .port = port,
-    // };
-    // _ = try socket.sendTo(endpoint, "iFacialMocap_sahuasouryya9218sauhuiayeta91555dy3719");
+    const endpoint = network.EndPoint{
+        .address = .{
+            .ipv4 = address,
+        },
+        .port = port,
+    };
+    _ = try socket.sendTo(endpoint, "iFacialMocap_sahuasouryya9218sauhuiayeta91555dy3719");
 
     while (true) {
 
