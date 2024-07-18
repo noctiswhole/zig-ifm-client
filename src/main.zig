@@ -54,7 +54,11 @@ pub fn main() !void {
                 continue;
             };
 
-            const value = try std.fmt.parseInt(u8, item[index+1..item.len], 10);
+            // std.debug.print("{s}", .{item[index+1..item.len]});
+            // not supporting rotational values yet
+            const value = std.fmt.parseInt(u8, item[index+1..item.len], 10) catch {
+                continue;
+            };
             if (std.mem.eql(u8, item[0..index], "mouthClose")) {
                 ifm.mouthClose = value;
             }
